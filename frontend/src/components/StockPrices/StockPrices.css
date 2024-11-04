@@ -75,11 +75,7 @@
   table tr:nth-child(odd):hover {
     scale: 1.01;
   }
-
-  table tr:first-child:hover {
-    scale: 1.01;
-  }
-
+  
   .toggle__all__btn {
     position: absolute;
     margin-top: 20px;
