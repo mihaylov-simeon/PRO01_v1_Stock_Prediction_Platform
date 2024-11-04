@@ -14,13 +14,13 @@ def email_validator(value):
 
 class StockPrice(models.Model):
     ticker = models.CharField(max_length=10)
-    date = models.DateTimeField(default=timezone.now)  # Changed from auto_now=True
+    date = models.DateTimeField(default=timezone.now)
     open = models.DecimalField(max_digits=10, decimal_places=2)
     high = models.DecimalField(max_digits=10, decimal_places=2)
     low = models.DecimalField(max_digits=10, decimal_places=2)
     close = models.DecimalField(max_digits=10, decimal_places=2)
     volume = models.BigIntegerField()
-    market_cap = models.DecimalField(max_digits=25, decimal_places=2, null=True, blank=True)
+    market_cap = models.DecimalField(max_digits=35, decimal_places=2, null=True, blank=True)
     pe_ratio = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     high_52_week = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     low_52_week = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)

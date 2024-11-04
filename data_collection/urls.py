@@ -18,5 +18,5 @@ from django.urls import path
 from data_collection import views
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('api/stock_prices', views.StockPriceView.as_view(), name="stock_prices")
 ]
