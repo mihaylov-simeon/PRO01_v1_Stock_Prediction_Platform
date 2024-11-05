@@ -5,7 +5,8 @@ import '../StockPrices/StockPrices.css';
 const StockPrices = () => {
     // Variables to hold stock data and toggle state
     const [stocks, setStocks] = useState([]);
-    const [isExpanded, setIsExpanded] = useState(false); // State for toggle
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     // use the hook to fetch the data when the component loads
     useEffect(() => {
@@ -19,18 +20,28 @@ const StockPrices = () => {
                 console.error("Error fetching stock data!");
             }
         };
-
         // call the function to fetch the data
         getStockPrices();
     }, []);
 
     function toggleTable() {
-        setIsExpanded(prevState => !prevState); // Toggle the state
+        setIsExpanded(prevState => !prevState);
     }
+
+    function stockSearchQuery(e) {
+        var upperCase = e.target.value.toUpperCase();
+        setSearchQuery(upperCase)
+    }
+
+    const filteredStocks = stocks.filter(stock => (
+            stock.ticker.toUpperCase().includes(searchQuery)));
 
     return (
         <div>
             <h1>Stock Prices</h1>
+            <div className='input__container'>
+                <input onChange={stockSearchQuery} id="stock__search" placeholder='Search stocks'></input>
+            </div>
             <div className="table__container">
                 <div className={`table__wrapper ${isExpanded ? "expanded" : ""}`}>
                     <table className="stock__info">
@@ -50,7 +61,7 @@ const StockPrices = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {stocks.map((stock) => (
+                            {filteredStocks.map((stock) => (
                                 <tr id="single__stock" key={stock.id}>
                                     <th>{stock.ticker}</th>
                                     <th>{new Date(stock.date).toLocaleString()}</th>

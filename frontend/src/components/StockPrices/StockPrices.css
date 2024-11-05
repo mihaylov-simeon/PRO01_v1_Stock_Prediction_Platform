@@ -17,6 +17,23 @@ h1 {
   text-align: center;
 }
 
+.input__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#stock__search {
+  position: relative;
+  width: 95%;
+  margin-bottom: 15px;
+  border: none;
+  box-shadow: 0px 0px 10px 5px #e1e1e1;
+  height: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .table__container {
   position: relative;
   width: 100%;
