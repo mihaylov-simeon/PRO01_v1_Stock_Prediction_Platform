@@ -4,13 +4,8 @@
   padding: 0;
 }
 
-body {
-  margin: 0 20px 100px 20px;
-  padding: 15px;
-}
-
 h1 {
-  margin-bottom: 20px;
+  margin: 20px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: #007bff;
   font-size: 2.5rem;
@@ -29,17 +24,18 @@ h1 {
   margin-bottom: 15px;
   border: none;
   box-shadow: 0px 0px 10px 5px #e1e1e1;
-  height: 30px;
+  height: 39px;
   padding: 10px;
   border-radius: 10px;
 }
 
 .table__container {
   position: relative;
-  width: 100%;
+  width: 95%;
   box-shadow: 0px 0px 20px 0px #d1d0d0;
   border-radius: 30px;
   overflow: auto;
+  margin: 0 auto;
 }
 
 .table__wrapper {

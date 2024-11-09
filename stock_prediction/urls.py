@@ -21,6 +21,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('data_collection.urls'))
+    path('', include('data_collection.urls')),  # Includes all API endpoints.
 ]
+
 

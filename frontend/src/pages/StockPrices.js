@@ -12,12 +12,12 @@ const StockPrices = () => {
     useEffect(() => {
         const getStockPrices = async () => {
             try {
-                // fetch the data from the api
-                const data = await api();
+                // fetch the data from the API
+                const response = await api.get("api/stock_prices");
                 // store the data in the stocks state
-                setStocks(data);
+                setStocks(response.data);
             } catch (error) {
-                console.error("Error fetching stock data!");
+                console.error("Error fetching stock data!", error);
             }
         };
         // call the function to fetch the data
