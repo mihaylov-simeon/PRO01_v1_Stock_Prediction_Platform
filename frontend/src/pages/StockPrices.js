@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchStockPrices } from "../../api/stockService";
-import '../StockPrices/StockPrices.css';
+import "../styles/StockPrices.css"
+import api from '../api';
 
 const StockPrices = () => {
     // Variables to hold stock data and toggle state
@@ -13,7 +13,7 @@ const StockPrices = () => {
         const getStockPrices = async () => {
             try {
                 // fetch the data from the api
-                const data = await fetchStockPrices();
+                const data = await api();
                 // store the data in the stocks state
                 setStocks(data);
             } catch (error) {

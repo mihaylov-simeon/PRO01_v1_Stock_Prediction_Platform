@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from rest_framework import generics, status
+from rest_framework import generics
 from .serializers import StockPriceSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from .models import StockPrice
 
 def index(request):

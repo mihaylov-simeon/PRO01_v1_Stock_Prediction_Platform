@@ -1,6 +1,5 @@
 import React from 'react';
-import './NavBar.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Ensure this is imported
+import '../styles/NavBar.css';
 
 const Navbar = () => {
     return (
