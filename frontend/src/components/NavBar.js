@@ -28,9 +28,9 @@ const Navbar = () => {
                     <ul className="nav-links">
                         {isLoggedIn && (
                             <>
-                                <li><a href="/">Stock Prices</a></li>
-                                <li><a href="/">Alerts</a></li>
-                                <li><a href="/">History</a></li>
+                                <li><a href="/stock_prices">Stock Prices</a></li>
+                                <li><a href="/alerts">Alerts</a></li>
+                                <li><a href="/history_prices">History</a></li>
                                 <li><a href="/profile">Profile</a></li>
                                 <li><a href="/settings">Settings</a></li>
                             </>

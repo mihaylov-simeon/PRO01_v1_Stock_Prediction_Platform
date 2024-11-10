@@ -32,7 +32,7 @@ function Form({ route, method }) {
                 localStorage.setItem(ACCESS_TOKEN, response.data.access);
                 localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
                 localStorage.setItem(USERNAME_KEY, username);
-                window.location.href = "/";
+                window.location.href = "/stock_prices";
             } else {
                 alert("Registration successful! Please login.");
                 window.location.href = "/login";

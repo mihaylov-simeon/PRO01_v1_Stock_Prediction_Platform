@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import "../styles/StockPrices.css"
+import "../styles/HistoricalPrices.css"
 import api from '../api';
 
 const StockPrices = () => {
     // Variables to hold stock data and toggle state
-    const [stocks, setStocks] = useState([]);
+    const [history, setHistory] = useState([])
     const [isExpanded, setIsExpanded] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+    const [startDate, setStartDate] = useState("")
+    const [endDate, setEndDate] = useState("")
 
     // use the hook to fetch the data when the component loads
     useEffect(() => {
-        const getStockPrices = async () => {
+        const getStockHistoryPrices = async () => {
             try {
                 // fetch the data from the API
-                const response_stocks = await api.get("api/stock_prices");
-
+                const response_history = await api.get("api/history_prices");
                 // store the data in the stocks state
-                setStocks(response_stocks.data);
+                setHistory(response_history.data);
             } catch (error) {
                 console.error("Error fetching stock data!", error);
             }
         };
         // call the function to fetch the data
-        getStockPrices();
+        getStockHistoryPrices();
     }, []);
 
     function toggleTable() {
@@ -34,14 +35,36 @@ const StockPrices = () => {
         setSearchQuery(upperCase)
     }
 
-    const filteredStocks = stocks.filter(stock => (
-            stock.ticker.toUpperCase().includes(searchQuery)));
+    // Filter history data based on search query and date range
+    const filteredStocksHistory = history.filter(stock => {
+        const stockDate = new Date(stock.date).toISOString().split('T')[0];
+        const withinDateRange =
+            (!startDate || stockDate >= startDate) &&
+            (!endDate || stockDate <= endDate);
+
+        return (
+            stock.ticker.toUpperCase().includes(searchQuery) &&
+            withinDateRange
+        );
+    });
 
     return (
         <div>
-            <h1>Stock Prices</h1>
+            <h1>History Prices</h1>
             <div className='input__container'>
                 <input onChange={stockSearchQuery} id="stock__search" placeholder='Search stocks'></input>
+            </div>
+            <div className='input__container__date'>
+                <input 
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                />
+                <input 
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                />
             </div>
             <div className="table__container">
                 <div className={`table__wrapper ${isExpanded ? "expanded" : ""}`}>
@@ -62,7 +85,7 @@ const StockPrices = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredStocks.map((stock) => (
+                            {filteredStocksHistory.map((stock) => (
                                 <tr id="single__stock" key={stock.id}>
                                     <th>{stock.ticker}</th>
                                     <th>{new Date(stock.date).toLocaleString()}</th>

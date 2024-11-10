@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .serializers import StockPriceSerializer, UserSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from .models import StockPrice, User
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .serializers import StockPriceSerializer, UserSerializer, HistoryPriceSerializer
+from rest_framework.permissions import AllowAny
+from .models import StockPrice
+from data_collection.models import StockPrice, HistoricalPrice
+from django.contrib.auth.models import User
 
-def index(request):
-    return render(request, 'data_collection/index.html')
+# def index(request):
+#     return render(request, 'data_collection/index.html')
 
 class StockPriceView(generics.ListCreateAPIView):
     serializer_class = StockPriceSerializer
@@ -14,6 +15,20 @@ class StockPriceView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return StockPrice.objects.all()
+    
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            print(serializer.errors)
+
+
+class HistoricalPriceView(generics.ListCreateAPIView):
+    serializer_class = HistoryPriceSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return HistoricalPrice.objects.all()
     
     def perform_create(self, serializer):
         if serializer.is_valid():

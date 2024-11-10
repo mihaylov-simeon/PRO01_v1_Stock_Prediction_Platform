@@ -34,6 +34,27 @@ class StockPrice(models.Model):
             models.Index(fields=['ticker', 'date'])
         ]
 
+class HistoricalPrice(models.Model):
+    ticker = models.CharField(max_length=10)
+    date = models.DateTimeField()
+    open = models.DecimalField(max_digits=10, decimal_places=2)
+    high = models.DecimalField(max_digits=10, decimal_places=2)
+    low = models.DecimalField(max_digits=10, decimal_places=2)
+    close = models.DecimalField(max_digits=10, decimal_places=2)
+    volume = models.BigIntegerField()
+    market_cap = models.DecimalField(max_digits=35, decimal_places=2, null=True, blank=True)
+    pe_ratio = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    high_52_week = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    low_52_week = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.ticker} - {self.date}"
+
+    class Meta:
+        unique_together = ['ticker', 'date']
+        indexes = [models.Index(fields=['ticker', 'date'])]
+
+
 
 class PredictionResult(models.Model):
     stock = models.ForeignKey(StockPrice, on_delete=models.CASCADE)
