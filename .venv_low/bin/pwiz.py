@@ -1,4 +1,4 @@
-#!/Users/simeonmihaylov/PycharmProjects/PRO01_v1_Stock_Prediction_Platform/.venv_low/bin/python3.12
+#!/Users/simeonmihaylov/PycharmProjects/PRO01_v1_Stock_Prediction_Platform/.venv_low/bin/python3.10
 
 import datetime
 import os

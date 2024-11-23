@@ -41,6 +41,10 @@
     font-size: 1.13rem;
 }
 
+.navbar-right .nav-links a.active {
+    color: #ff8400;
+}
+
 .navbar-right .nav-links a:hover {
     color: #ff8400;
 }
