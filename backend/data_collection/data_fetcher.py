@@ -1,5 +1,6 @@
 import os
 import sys
+import django
 
 # Add the project directory to PYTHONPATH
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -7,7 +8,6 @@ project_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.append(project_dir)
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'stock_prediction.settings')
-import django
 django.setup()
 
 from data_collection.models import StockPrice, HistoricalPrice
