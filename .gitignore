@@ -13,6 +13,15 @@ venv/
 *.log
 logs/
 
+# Django-specific files
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+
+# REST Framework-related
+*.json      
+
 # VS Code-specific settings
 .vscode/
 
@@ -22,3 +31,6 @@ logs/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# JWT-related (Optional, for token storage during development)
+*.jwt
