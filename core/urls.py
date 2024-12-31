@@ -8,5 +8,4 @@ urlpatterns = [
     path('alerts/', AlertView.as_view(), name='alerts'),
     path('alerts/<int:pk>/', AlertUpdateView.as_view(), name='alert-update'),
     path('profile/', UserProfileView.as_view(), name='user-profile'),
-
 ]
